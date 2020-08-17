@@ -23,30 +23,13 @@ class Home: UIView {
     private let weekLabel: UILabel = {
         let label = UILabel()
         label.text = "This Week"
-        label.textColor = UIColor.bottleGreen
+        label.textColor = .bottleGreen
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     private let week = WeekCalendar()
 
     //  Activities Container
-    private let headerView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60))
-        view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        view.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        return view
-    }()
-
-    private let activitiesLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 36))
-        label.text = "Activities"
-        label.textColor = UIColor.bottleGreen
-        label.font = UIFont.systemFont(ofSize: 34, weight: .regular)
-        return label
-    }()
-
     public let activitiesCollection = ActivitiesCollection()
 
     override init(frame: CGRect) {
@@ -59,7 +42,7 @@ class Home: UIView {
     }
 
     private func setupLayout() {
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = .white
 
         //  Week Container
         self.addSubview(calendarContainer)
@@ -71,41 +54,20 @@ class Home: UIView {
 
         calendarContainer.addSubview(weekLabel)
         weekLabel.translatesAutoresizingMaskIntoConstraints = false
-        weekLabel.safeAreaLayoutGuide.centerYAnchor.constraint(
-            equalTo: calendarContainer.centerYAnchor, constant: -8).isActive = true
-        weekLabel.safeAreaLayoutGuide.leadingAnchor.constraint(
-            equalTo: calendarContainer.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        weekLabel.centerYAnchor.constraint(equalTo: calendarContainer.centerYAnchor, constant: -8).isActive = true
+        weekLabel.leadingAnchor.constraint(equalTo: calendarContainer.leadingAnchor, constant: 16).isActive = true
 
         calendarContainer.addSubview(week)
         week.translatesAutoresizingMaskIntoConstraints = false
         week.centerXAnchor.constraint(equalTo: calendarContainer.centerXAnchor).isActive = true
-        week.topAnchor.constraint(
-            equalTo: weekLabel.bottomAnchor, constant: 16).isActive = true
-
-        //  Activities Container
-        self.addSubview(headerView)
-        headerView.leadingAnchor.constraint(
-            equalTo: self.leadingAnchor).isActive = true
-        headerView.topAnchor.constraint(
-            equalTo: calendarContainer.bottomAnchor).isActive = true
-
-        headerView.addSubview(activitiesLabel)
-        activitiesLabel.translatesAutoresizingMaskIntoConstraints = false
-        activitiesLabel.leadingAnchor.constraint(
-            equalTo: headerView.leadingAnchor, constant: 16).isActive = true
-        activitiesLabel.bottomAnchor.constraint(
-            equalTo: headerView.bottomAnchor, constant: -4).isActive = true
+        week.topAnchor.constraint(equalTo: weekLabel.bottomAnchor, constant: 16).isActive = true
 
         self.addSubview(activitiesCollection)
         self.sendSubviewToBack(activitiesCollection)
-        activitiesCollection.safeAreaLayoutGuide.topAnchor.constraint(
-            equalTo: headerView.safeAreaLayoutGuide.bottomAnchor, constant: 8).isActive = true
-        activitiesCollection.safeAreaLayoutGuide.leadingAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        activitiesCollection.safeAreaLayoutGuide.trailingAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        activitiesCollection.safeAreaLayoutGuide.bottomAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+        activitiesCollection.topAnchor.constraint(equalTo: calendarContainer.bottomAnchor, constant: 8).isActive = true
+        activitiesCollection.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        activitiesCollection.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        activitiesCollection.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8).isActive = true
     }
 
 }

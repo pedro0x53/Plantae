@@ -81,25 +81,16 @@ class WeekCalendar: UIStackView {
         dayID.text = label
         dayID.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         dayID.translatesAutoresizingMaskIntoConstraints = false
-        dayID.safeAreaLayoutGuide.topAnchor.constraint(
-            equalTo: dayContainer.safeAreaLayoutGuide.topAnchor
-        ).isActive = true
-        dayID.safeAreaLayoutGuide.centerXAnchor.constraint(
-            equalTo: dayContainer.safeAreaLayoutGuide.centerXAnchor
-        ).isActive = true
+        dayID.topAnchor.constraint(equalTo: dayContainer.topAnchor).isActive = true
+        dayID.centerXAnchor.constraint(equalTo: dayContainer.centerXAnchor).isActive = true
 
         let dayLabel = UILabel()
         dayContainer.addSubview(dayLabel)
         dayLabel.text = number
         dayLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        dayLabel.safeAreaLayoutGuide.centerXAnchor.constraint(
-            equalTo: dayContainer.safeAreaLayoutGuide.centerXAnchor
-        ).isActive = true
-        dayLabel.safeAreaLayoutGuide.centerYAnchor.constraint(
-            equalTo: dayContainer.safeAreaLayoutGuide.centerYAnchor,
-            constant: 8
-        ).isActive = true
+        dayLabel.centerXAnchor.constraint(equalTo: dayContainer.centerXAnchor).isActive = true
+        dayLabel.centerYAnchor.constraint(equalTo: dayContainer.centerYAnchor, constant: 8).isActive = true
 
         if current {
             let highlighter = generateHighlighter()

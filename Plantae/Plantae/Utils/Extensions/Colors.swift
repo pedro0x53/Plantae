@@ -13,7 +13,7 @@ extension UIColor {
     public static let cultured             = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
     public static let cultured50           = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.50)
     public static let bottleGreen          = UIColor(red: 0.22, green: 0.41, blue: 0.33, alpha: 1.00)
-    public static let richBlck             = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1.00)
+    public static let richBlack             = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1.00)
 
 //  Task Status
     public static let illuminatingEmerald  = UIColor(red: 0.33, green: 0.60, blue: 0.49, alpha: 1.00)

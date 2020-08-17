@@ -32,7 +32,6 @@ class ActivityCell: UICollectionViewCell {
         stack.alignment = .leading
         stack.spacing = 8
         stack.distribution = .equalSpacing
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return stack
     }()
@@ -66,45 +65,31 @@ class ActivityCell: UICollectionViewCell {
     private func setupLayout() {
         self.backgroundColor = .illuminatingEmerald
         self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 10
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.15
+        self.layer.shadowRadius = 4
 
         self.addSubview(imageContainer)
         imageContainer.heightAnchor.constraint(equalToConstant: 85).isActive = true
         imageContainer.widthAnchor.constraint(equalToConstant: 85).isActive = true
         imageContainer.translatesAutoresizingMaskIntoConstraints = false
-        imageContainer.safeAreaLayoutGuide.centerYAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.centerYAnchor
-        ).isActive = true
-        imageContainer.safeAreaLayoutGuide.leadingAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.leadingAnchor,
-            constant: 8
-        ).isActive = true
+        imageContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        imageContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
 
         self.addSubview(checkContainer)
         checkContainer.heightAnchor.constraint(equalToConstant: 40).isActive = true
         checkContainer.widthAnchor.constraint(equalToConstant: 40).isActive = true
         checkContainer.translatesAutoresizingMaskIntoConstraints = false
-        checkContainer.safeAreaLayoutGuide.centerYAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.centerYAnchor
-        ).isActive = true
-        checkContainer.safeAreaLayoutGuide.trailingAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.trailingAnchor,
-            constant: -16
-        ).isActive = true
+        checkContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        checkContainer.trailingAnchor.constraint( equalTo: self.trailingAnchor, constant: -16).isActive = true
 
         self.addSubview(textStack)
         textStack.addArrangedSubview(plantLabel)
         textStack.addArrangedSubview(descriptionLabel)
         textStack.translatesAutoresizingMaskIntoConstraints = false
-        textStack.safeAreaLayoutGuide.centerYAnchor.constraint(
-            equalTo: self.safeAreaLayoutGuide.centerYAnchor
-        ).isActive = true
-        textStack.safeAreaLayoutGuide.leadingAnchor.constraint(
-            equalTo: imageContainer.safeAreaLayoutGuide.trailingAnchor,
-            constant: 8
-        ).isActive = true
-//        textStack.safeAreaLayoutGuide.trailingAnchor.constraint(
-//            equalTo: checkContainer.safeAreaLayoutGuide.leadingAnchor,
-//            constant: -16
-//        ).isActive = true
+        textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        textStack.leadingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: 8).isActive = true
     }
 }

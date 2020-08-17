@@ -10,7 +10,16 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+
     private let home = Home()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavBar()
+    }
 
     override func loadView() {
         super.loadView()
@@ -21,6 +30,10 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    private func setupNavBar() {
+        navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -34,9 +47,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActivityCell.identifier,
                                                             for: indexPath) as? ActivityCell
         else {
-            fatalError("Unable to cast cell to UICollectionCell")
+            fatalError("Unable to cast cell ActivityCell to UICollectionCell")
         }
-//        cell.congigure()
+//        cell.configure()
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        var view = UICollectionReusableView()
+        if kind == UICollectionView.elementKindSectionHeader {
+            view = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: ActivityHeader.identifier, for: indexPath)
+        }
+        return view
     }
 }
