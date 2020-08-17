@@ -93,3 +93,8 @@ class ActivityCell: UICollectionViewCell {
         textStack.leadingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: 8).isActive = true
     }
 }
+
+extension ActivityCell {
+    private func configure() {
+    }
+}

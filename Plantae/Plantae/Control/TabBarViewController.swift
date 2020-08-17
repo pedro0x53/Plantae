@@ -11,16 +11,18 @@ import UIKit
 class TabBarViewController: UITabBarController {
 
     private let homeController = HomeViewController()
-    private let mypPlantsController = MyPlantsViewController()
+    private let myPlantsController = MyPlantsViewController()
+    private let plantController = PlantViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         homeController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        mypPlantsController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        myPlantsController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        plantController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
 
-        let nav = UINavigationController(rootViewController: mypPlantsController)
+        let nav = UINavigationController(rootViewController: myPlantsController)
 
-        let tabBarList = [homeController, nav]
+        let tabBarList = [homeController, nav, plantController]
 
         viewControllers = tabBarList
     }

@@ -83,3 +83,8 @@ class PlantCell: UICollectionViewCell {
         photo.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
 }
+
+extension PlantCell {
+    public func configure() {
+    }
+}
