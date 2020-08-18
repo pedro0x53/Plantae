@@ -16,9 +16,12 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        myPlantsController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
-        plantController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
+
+        self.tabBar.tintColor = .illuminatingEmerald
+
+        homeController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home_icon"), tag: 0)
+        myPlantsController.tabBarItem = UITabBarItem(title: "My Plants", image: UIImage(named: "plant_icon"), tag: 1)
+        plantController.tabBarItem = UITabBarItem(title: "Tips", image: UIImage(named: "lightbulb_icon"), tag: 2)
 
         let nav = UINavigationController(rootViewController: myPlantsController)
 
