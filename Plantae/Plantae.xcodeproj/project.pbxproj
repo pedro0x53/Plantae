@@ -14,6 +14,8 @@
 		FE43673924E809AB004FA4F1 /* ActivityHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE43673824E809AB004FA4F1 /* ActivityHeader.swift */; };
 		FEA399D624ED4A3A00AAB4A8 /* TrefleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399D524ED4A3A00AAB4A8 /* TrefleData.swift */; };
 		FEA399D824ED4A5A00AAB4A8 /* TrefleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */; };
+		FEA399DC24ED701D00AAB4A8 /* CreatePlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399DB24ED701D00AAB4A8 /* CreatePlant.swift */; };
+		FEA399DE24ED704500AAB4A8 /* CreatePlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399DD24ED704500AAB4A8 /* CreatePlantViewController.swift */; };
 		FEB0BB2824EACB1900AC91A4 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0BB2724EACB1900AC91A4 /* Plant.swift */; };
 		FEB0BB2A24EACB2900AC91A4 /* PlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */; };
 		FEB11F4424E473C80071181C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB11F4324E473C80071181C /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 		FE43673824E809AB004FA4F1 /* ActivityHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHeader.swift; sourceTree = "<group>"; };
 		FEA399D524ED4A3A00AAB4A8 /* TrefleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrefleData.swift; sourceTree = "<group>"; };
 		FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrefleAPI.swift; sourceTree = "<group>"; };
+		FEA399DB24ED701D00AAB4A8 /* CreatePlant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlant.swift; sourceTree = "<group>"; };
+		FEA399DD24ED704500AAB4A8 /* CreatePlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantViewController.swift; sourceTree = "<group>"; };
 		FEB0BB2724EACB1900AC91A4 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantViewController.swift; sourceTree = "<group>"; };
 		FEB11F4024E473C80071181C /* Plantae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plantae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +164,7 @@
 				FEC6803324E564AE00C0C701 /* Home.swift */,
 				FE36082624E8159000F5D2CA /* MyPlants.swift */,
 				FEB0BB2724EACB1900AC91A4 /* Plant.swift */,
+				FEA399DB24ED701D00AAB4A8 /* CreatePlant.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 				FEC6803524E5658600C0C701 /* HomeViewController.swift */,
 				FE36082824E815A300F5D2CA /* MyPlantsViewController.swift */,
 				FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */,
+				FEA399DD24ED704500AAB4A8 /* CreatePlantViewController.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -316,8 +322,10 @@
 				FE43673924E809AB004FA4F1 /* ActivityHeader.swift in Sources */,
 				FEB11F4624E473C80071181C /* SceneDelegate.swift in Sources */,
 				FE36082724E8159000F5D2CA /* MyPlants.swift in Sources */,
+				FEA399DE24ED704500AAB4A8 /* CreatePlantViewController.swift in Sources */,
 				FE36082924E815A300F5D2CA /* MyPlantsViewController.swift in Sources */,
 				FEC6803624E5658600C0C701 /* HomeViewController.swift in Sources */,
+				FEA399DC24ED701D00AAB4A8 /* CreatePlant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

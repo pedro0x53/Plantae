@@ -46,13 +46,15 @@ class MyPlantsViewController: UIViewController {
     }
 
     @objc private func newPlant() {
-        print("+ tapped")
+        let createPlantVC = CreatePlantViewController()
+        let nav = UINavigationController(rootViewController: createPlantVC)
+        self.present(nav, animated: true, completion: nil)
     }
 }
 
 extension MyPlantsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView,

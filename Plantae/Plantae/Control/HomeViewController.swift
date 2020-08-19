@@ -30,8 +30,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let trefleAPI = TrefleAPI()
-        trefleAPI.search(for: "Bracken")
+//        let trefleAPI = TrefleAPI()
+//        trefleAPI.search(for: "Bracken")
     }
 
     private func setupNavBar() {
@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView,
