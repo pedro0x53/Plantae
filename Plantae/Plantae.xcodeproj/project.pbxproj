@@ -12,6 +12,8 @@
 		FE36082724E8159000F5D2CA /* MyPlants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE36082624E8159000F5D2CA /* MyPlants.swift */; };
 		FE36082924E815A300F5D2CA /* MyPlantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE36082824E815A300F5D2CA /* MyPlantsViewController.swift */; };
 		FE43673924E809AB004FA4F1 /* ActivityHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE43673824E809AB004FA4F1 /* ActivityHeader.swift */; };
+		FEA399D624ED4A3A00AAB4A8 /* TrefleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399D524ED4A3A00AAB4A8 /* TrefleData.swift */; };
+		FEA399D824ED4A5A00AAB4A8 /* TrefleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */; };
 		FEB0BB2824EACB1900AC91A4 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0BB2724EACB1900AC91A4 /* Plant.swift */; };
 		FEB0BB2A24EACB2900AC91A4 /* PlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */; };
 		FEB11F4424E473C80071181C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB11F4324E473C80071181C /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 		FE36082624E8159000F5D2CA /* MyPlants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlants.swift; sourceTree = "<group>"; };
 		FE36082824E815A300F5D2CA /* MyPlantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlantsViewController.swift; sourceTree = "<group>"; };
 		FE43673824E809AB004FA4F1 /* ActivityHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHeader.swift; sourceTree = "<group>"; };
+		FEA399D524ED4A3A00AAB4A8 /* TrefleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrefleData.swift; sourceTree = "<group>"; };
+		FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrefleAPI.swift; sourceTree = "<group>"; };
 		FEB0BB2724EACB1900AC91A4 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantViewController.swift; sourceTree = "<group>"; };
 		FEB11F4024E473C80071181C /* Plantae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plantae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +86,22 @@
 			path = MyPlants;
 			sourceTree = "<group>";
 		};
+		FE4EF67724EC17E400B9EC64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FEA399D524ED4A3A00AAB4A8 /* TrefleData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FE4EF67824EC4ED600B9EC64 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		FEAFC32B24EAC56300933EF6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +130,8 @@
 		FEB11F4224E473C80071181C /* Plantae */ = {
 			isa = PBXGroup;
 			children = (
+				FE4EF67824EC4ED600B9EC64 /* Services */,
+				FE4EF67724EC17E400B9EC64 /* Model */,
 				FEC6803124E5646100C0C701 /* View */,
 				FEC6803224E5646800C0C701 /* Control */,
 				FEFF788724E56FB0004504FF /* Utils */,
@@ -280,7 +302,9 @@
 				FEFF789624E5C406004504FF /* ActivitiesCollection.swift in Sources */,
 				FE36082324E8121900F5D2CA /* PlantsCollection.swift in Sources */,
 				FE36082124E8120100F5D2CA /* PlantCell.swift in Sources */,
+				FEA399D624ED4A3A00AAB4A8 /* TrefleData.swift in Sources */,
 				FEC6803024E5628900C0C701 /* Config.swift in Sources */,
+				FEA399D824ED4A5A00AAB4A8 /* TrefleAPI.swift in Sources */,
 				FEFF789424E5B99F004504FF /* ActivityCell.swift in Sources */,
 				FEC6803424E564AE00C0C701 /* Home.swift in Sources */,
 				FEFF788E24E5773B004504FF /* WeekCalendar.swift in Sources */,

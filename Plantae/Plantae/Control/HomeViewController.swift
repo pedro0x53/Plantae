@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let trefleAPI = TrefleAPI()
+        trefleAPI.search(for: "Bracken")
     }
 
     private func setupNavBar() {
