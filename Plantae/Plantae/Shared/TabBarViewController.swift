@@ -23,9 +23,7 @@ class TabBarViewController: UITabBarController {
         homeController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home_icon"), tag: 0)
         myPlantsController.tabBarItem = UITabBarItem(title: "My Plants", image: UIImage(named: "plant_icon"), tag: 1)
 
-        let nav = UINavigationController(rootViewController: myPlantsController)
-
-        let tabBarList = [homeController, nav]
+        let tabBarList = [homeController, myPlantsController]
 
         viewControllers = tabBarList
     }
