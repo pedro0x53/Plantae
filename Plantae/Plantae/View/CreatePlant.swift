@@ -34,7 +34,7 @@ class CreatePlant: UIView {
         return textField
     }()
 
-    private let speciesLabel: UILabel = {
+    private let commonLabel: UILabel = {
         let label = UILabel()
         label.text = "Species"
         label.textColor = .richBlack
@@ -42,9 +42,9 @@ class CreatePlant: UIView {
         return label
     }()
 
-    public let speciesTextField: UITextField = {
+    public let commonTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Scientific Name"
+        textField.placeholder = "Commom Name"
         textField.textColor = .richBlack
         textField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return textField
@@ -56,14 +56,6 @@ class CreatePlant: UIView {
         label.textColor = .richBlack
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
-    }()
-
-    public let wateringTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Every Monday"
-        textField.textColor = .richBlack
-        textField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        return textField
     }()
 
     override init(frame: CGRect) {
@@ -97,29 +89,23 @@ class CreatePlant: UIView {
         nameTextField.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 16).isActive = true
         nameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
 
-        self.addSubview(speciesLabel)
-        speciesLabel.translatesAutoresizingMaskIntoConstraints = false
-        speciesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16).isActive = true
-        speciesLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-        speciesLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        self.addSubview(commonLabel)
+        commonLabel.translatesAutoresizingMaskIntoConstraints = false
+        commonLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16).isActive = true
+        commonLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
+        commonLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
 
-        self.addSubview(speciesTextField)
-        speciesTextField.translatesAutoresizingMaskIntoConstraints = false
-        speciesTextField.topAnchor.constraint(equalTo: speciesLabel.topAnchor).isActive = true
-        speciesTextField.leadingAnchor.constraint(equalTo: speciesLabel.trailingAnchor, constant: 16).isActive = true
-        speciesTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+        self.addSubview(commonTextField)
+        commonTextField.translatesAutoresizingMaskIntoConstraints = false
+        commonTextField.topAnchor.constraint(equalTo: commonLabel.topAnchor).isActive = true
+        commonTextField.leadingAnchor.constraint(equalTo: commonLabel.trailingAnchor, constant: 16).isActive = true
+        commonTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
 
         self.addSubview(wateringLabel)
         wateringLabel.translatesAutoresizingMaskIntoConstraints = false
-        wateringLabel.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 16).isActive = true
+        wateringLabel.topAnchor.constraint(equalTo: commonLabel.bottomAnchor, constant: 16).isActive = true
         wateringLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         wateringLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
-
-        self.addSubview(wateringTextField)
-        wateringTextField.translatesAutoresizingMaskIntoConstraints = false
-        wateringTextField.topAnchor.constraint(equalTo: wateringLabel.topAnchor).isActive = true
-        wateringTextField.leadingAnchor.constraint(equalTo: wateringLabel.trailingAnchor, constant: 16).isActive = true
-        wateringTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
     }
 
     private func generateSetupItem() -> UIStackView {

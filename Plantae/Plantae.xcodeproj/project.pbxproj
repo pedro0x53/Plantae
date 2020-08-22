@@ -16,6 +16,10 @@
 		FEA399D824ED4A5A00AAB4A8 /* TrefleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */; };
 		FEA399DC24ED701D00AAB4A8 /* CreatePlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399DB24ED701D00AAB4A8 /* CreatePlant.swift */; };
 		FEA399DE24ED704500AAB4A8 /* CreatePlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399DD24ED704500AAB4A8 /* CreatePlantViewController.swift */; };
+		FEA399EF24EDBC1900AAB4A8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399EE24EDBC1900AAB4A8 /* DataManager.swift */; };
+		FEA399F224EE9C7300AAB4A8 /* PlantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399F124EE9C7300AAB4A8 /* PlantData.swift */; };
+		FEA399F424EEB07D00AAB4A8 /* RemiderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399F324EEB07D00AAB4A8 /* RemiderData.swift */; };
+		FEA399FA24F03BAF00AAB4A8 /* CreatePlantDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA399F924F03BAF00AAB4A8 /* CreatePlantDelegate.swift */; };
 		FEB0BB2824EACB1900AC91A4 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0BB2724EACB1900AC91A4 /* Plant.swift */; };
 		FEB0BB2A24EACB2900AC91A4 /* PlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */; };
 		FEB11F4424E473C80071181C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB11F4324E473C80071181C /* AppDelegate.swift */; };
@@ -26,7 +30,6 @@
 		FEC6803424E564AE00C0C701 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6803324E564AE00C0C701 /* Home.swift */; };
 		FEC6803624E5658600C0C701 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6803524E5658600C0C701 /* HomeViewController.swift */; };
 		FEFF788B24E56FE4004504FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF788A24E56FE4004504FF /* Colors.swift */; };
-		FEFF788E24E5773B004504FF /* WeekCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF788D24E5773B004504FF /* WeekCalendar.swift */; };
 		FEFF789024E58821004504FF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF788F24E58821004504FF /* TabBarViewController.swift */; };
 		FEFF789424E5B99F004504FF /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF789324E5B99F004504FF /* ActivityCell.swift */; };
 		FEFF789624E5C406004504FF /* ActivitiesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF789524E5C406004504FF /* ActivitiesCollection.swift */; };
@@ -42,6 +45,10 @@
 		FEA399D724ED4A5A00AAB4A8 /* TrefleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrefleAPI.swift; sourceTree = "<group>"; };
 		FEA399DB24ED701D00AAB4A8 /* CreatePlant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlant.swift; sourceTree = "<group>"; };
 		FEA399DD24ED704500AAB4A8 /* CreatePlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantViewController.swift; sourceTree = "<group>"; };
+		FEA399EE24EDBC1900AAB4A8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FEA399F124EE9C7300AAB4A8 /* PlantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantData.swift; sourceTree = "<group>"; };
+		FEA399F324EEB07D00AAB4A8 /* RemiderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemiderData.swift; sourceTree = "<group>"; };
+		FEA399F924F03BAF00AAB4A8 /* CreatePlantDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantDelegate.swift; sourceTree = "<group>"; };
 		FEB0BB2724EACB1900AC91A4 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantViewController.swift; sourceTree = "<group>"; };
 		FEB11F4024E473C80071181C /* Plantae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plantae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +61,6 @@
 		FEC6803324E564AE00C0C701 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		FEC6803524E5658600C0C701 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FEFF788A24E56FE4004504FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		FEFF788D24E5773B004504FF /* WeekCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalendar.swift; sourceTree = "<group>"; };
 		FEFF788F24E58821004504FF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FEFF789324E5B99F004504FF /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		FEFF789524E5C406004504FF /* ActivitiesCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesCollection.swift; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				FEA399D524ED4A3A00AAB4A8 /* TrefleData.swift */,
+				FEA399F124EE9C7300AAB4A8 /* PlantData.swift */,
+				FEA399F324EEB07D00AAB4A8 /* RemiderData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,11 +114,18 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		FEA399F024EDBC6000AAB4A8 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FEA399EE24EDBC1900AAB4A8 /* DataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		FEAFC32B24EAC56300933EF6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				FE43673624E80966004FA4F1 /* Activity */,
-				FEFF788D24E5773B004504FF /* WeekCalendar.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -152,6 +167,7 @@
 			children = (
 				FEB11F4324E473C80071181C /* AppDelegate.swift */,
 				FEB11F4524E473C80071181C /* SceneDelegate.swift */,
+				FEFF788F24E58821004504FF /* TabBarViewController.swift */,
 				FEC6802F24E5628900C0C701 /* Config.swift */,
 			);
 			path = Shared;
@@ -172,7 +188,7 @@
 		FEC6803224E5646800C0C701 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				FEFF788F24E58821004504FF /* TabBarViewController.swift */,
+				FEA399F024EDBC6000AAB4A8 /* Manager */,
 				FEC6803524E5658600C0C701 /* HomeViewController.swift */,
 				FE36082824E815A300F5D2CA /* MyPlantsViewController.swift */,
 				FEB0BB2924EACB2900AC91A4 /* PlantViewController.swift */,
@@ -201,6 +217,7 @@
 		FEFF788924E56FCD004504FF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				FEA399F924F03BAF00AAB4A8 /* CreatePlantDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -312,18 +329,21 @@
 				FEC6803024E5628900C0C701 /* Config.swift in Sources */,
 				FEA399D824ED4A5A00AAB4A8 /* TrefleAPI.swift in Sources */,
 				FEFF789424E5B99F004504FF /* ActivityCell.swift in Sources */,
+				FEA399F224EE9C7300AAB4A8 /* PlantData.swift in Sources */,
 				FEC6803424E564AE00C0C701 /* Home.swift in Sources */,
-				FEFF788E24E5773B004504FF /* WeekCalendar.swift in Sources */,
 				FEB0BB2A24EACB2900AC91A4 /* PlantViewController.swift in Sources */,
 				FEB0BB2824EACB1900AC91A4 /* Plant.swift in Sources */,
 				FEFF789024E58821004504FF /* TabBarViewController.swift in Sources */,
 				FEFF788B24E56FE4004504FF /* Colors.swift in Sources */,
+				FEA399F424EEB07D00AAB4A8 /* RemiderData.swift in Sources */,
 				FEB11F4424E473C80071181C /* AppDelegate.swift in Sources */,
 				FE43673924E809AB004FA4F1 /* ActivityHeader.swift in Sources */,
+				FEA399FA24F03BAF00AAB4A8 /* CreatePlantDelegate.swift in Sources */,
 				FEB11F4624E473C80071181C /* SceneDelegate.swift in Sources */,
 				FE36082724E8159000F5D2CA /* MyPlants.swift in Sources */,
 				FEA399DE24ED704500AAB4A8 /* CreatePlantViewController.swift in Sources */,
 				FE36082924E815A300F5D2CA /* MyPlantsViewController.swift in Sources */,
+				FEA399EF24EDBC1900AAB4A8 /* DataManager.swift in Sources */,
 				FEC6803624E5658600C0C701 /* HomeViewController.swift in Sources */,
 				FEA399DC24ED701D00AAB4A8 /* CreatePlant.swift in Sources */,
 			);

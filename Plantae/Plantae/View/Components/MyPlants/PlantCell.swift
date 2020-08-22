@@ -85,6 +85,8 @@ class PlantCell: UICollectionViewCell {
 }
 
 extension PlantCell {
-    public func configure() {
+    public func configure(data: PlantData) {
+        self.plantNameLabel.text = data.name
+        self.scientificNameLabel.text = data.commonName
     }
 }

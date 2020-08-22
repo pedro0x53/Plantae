@@ -10,11 +10,12 @@ import UIKit
 
 class MyPlantsViewController: UIViewController {
 
+    private let myPlants = MyPlants()
+    private var plants: [PlantData] = DataManager.shared.getAllPlants()
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-
-    private let myPlants = MyPlants()
 
     override func loadView() {
         super.loadView()
@@ -30,23 +31,18 @@ class MyPlantsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "My Plants"
     }
 
     private func setupNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 34, weight: .regular),
-            NSAttributedString.Key.foregroundColor: UIColor.bottleGreen
-        ]
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+        self.tabBarController?.navigationItem.title = "My Plants"
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self, action: #selector(newPlant))
-        navigationItem.rightBarButtonItem?.tintColor = .bottleGreen
+        self.tabBarController?.navigationItem.rightBarButtonItem?.tintColor = .bottleGreen
     }
 
     @objc private func newPlant() {
         let createPlantVC = CreatePlantViewController()
+        createPlantVC.delegate = self
         let nav = UINavigationController(rootViewController: createPlantVC)
         self.present(nav, animated: true, completion: nil)
     }
@@ -54,7 +50,10 @@ class MyPlantsViewController: UIViewController {
 
 extension MyPlantsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        if plants.count > 0 {
+            myPlants.imageView.removeFromSuperview()
+        }
+        return plants.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -64,7 +63,18 @@ extension MyPlantsViewController: UICollectionViewDelegate, UICollectionViewData
         else {
             fatalError("Unable to cast cell PlantCell to UICollectionCell")
         }
-//        cell.configure()
+        cell.configure(data: plants[indexPath.row])
         return cell
+    }
+}
+
+extension MyPlantsViewController: CreatePlantDelegate {
+    func update() {
+        self.plants = DataManager.shared.getAllPlants()
+        myPlants.plantsCollection.reloadData()
+    }
+
+    func somethingWentWrong() {
+        print("Something went wrong")
     }
 }

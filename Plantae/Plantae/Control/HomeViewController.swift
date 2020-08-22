@@ -10,15 +10,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    private let home = Home()
+    private var reminders: [ReminderData] = DataManager.shared.getTodaysReminders()
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
 
-    private let home = Home()
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavBar()
+        reminders = DataManager.shared.getTodaysReminders()
+        home.activitiesCollection.reloadData()
     }
 
     override func loadView() {
@@ -30,18 +33,22 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let trefleAPI = TrefleAPI()
-//        trefleAPI.search(for: "Bracken")
     }
 
     private func setupNavBar() {
-        navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.navigationItem.title = "Activities"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+        DataManager.shared.printCompletedActivities()
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        if reminders.count > 0 {
+            home.imageView.removeFromSuperview()
+        }
+        return reminders.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -51,18 +58,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         else {
             fatalError("Unable to cast cell ActivityCell to UICollectionCell")
         }
-//        cell.configure()
+        cell.configure(data: reminders[indexPath.row])
+
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        var view = UICollectionReusableView()
-        if kind == UICollectionView.elementKindSectionHeader {
-            view = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: ActivityHeader.identifier, for: indexPath)
-        }
-        return view
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        DataManager.shared.updateCompleteActivities(reminderID: reminders[indexPath.row].identifier)
     }
 }

@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol  WeekCalendarDelegate {
+    func weekdaysActivities() -> [Int]
+}

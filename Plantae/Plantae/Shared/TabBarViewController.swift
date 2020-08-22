@@ -12,8 +12,6 @@ class TabBarViewController: UITabBarController {
 
     private let homeController = HomeViewController()
     private let myPlantsController = MyPlantsViewController()
-    private let createPlantController = CreatePlantViewController()
-    private let plantController = PlantViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()

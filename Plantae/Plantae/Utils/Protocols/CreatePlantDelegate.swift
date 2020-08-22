@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol CreatePlantDelegate {
+    func update()
+    func somethingWentWrong()
+}

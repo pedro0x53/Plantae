@@ -11,6 +11,7 @@ import UIKit
 class CreatePlantViewController: UIViewController {
 
     private let createPlant = CreatePlant()
+    public var delegate: CreatePlantDelegate?
 
     override func loadView() {
         super.loadView()
@@ -42,11 +43,30 @@ class CreatePlantViewController: UIViewController {
     }
 
     @objc private func done() {
-        if let name = createPlant.nameTextField.text {
-            print(name)
+        guard let unwappedDelegate = self.delegate else {
+            return
         }
 
-        self.dismiss(animated: true, completion: nil)
+        do {
+            guard let name = createPlant.nameTextField.text else {
+                return
+            }
+
+            if name.isEmpty {
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+
+            let plant = PlantData(commomName: name)
+            try DataManager.shared.createPlant(plant: plant)
+            let reminder = ReminderData(plantId: plant.identifier, weekday: 6)
+            try DataManager.shared.createReminder(reminder: reminder)
+        } catch {
+            unwappedDelegate.somethingWentWrong()
+        }
+        self.dismiss(animated: true, completion: {
+            unwappedDelegate.update()
+        })
     }
 
     private func setupActionSheetCaller() {

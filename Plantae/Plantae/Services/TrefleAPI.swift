@@ -37,23 +37,14 @@ class TrefleAPI {
                         print(res)
                     }
                     if let body = data {
-                        self.getCommomNames(body)
+                        print(body)
                     }
                 }
             }
         )
         task.resume()
     }
-
-    private func getCommomNames(_ data: Data) {
-        var plants: [String] = []
-        if let trefle = try? JSONDecoder().decode(TrefleResponse.self, from: data) {
-            for plant in trefle.data {
-                plants.append(plant.commonName)
-            }
-        } else {
-            print("Nothing to decode")
-        }
-        print(plants)
-    }
+//    public func getPlantInfo(query: String) -> PlantAPIData {
+//
+//    }
 }

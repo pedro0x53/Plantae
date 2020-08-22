@@ -48,14 +48,3 @@ struct Links: Codable {
         case plant, genus
     }
 }
-
-// MARK: - Plant Local Data
-struct PlantLocalData: Codable {
-    let identifier: Int
-    let name: String
-    let commonName, scientificName: String
-    let creationDate: String
-    let synonyms: [String]
-    let about: String
-    let links: Links
-}

@@ -16,14 +16,16 @@ class ActivityCell: UICollectionViewCell {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 85))
         imageView.layer.cornerRadius = 42.5
         imageView.backgroundColor = .cultured50
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
-    private let checkContainer: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = .cultured
-        return imageView
+    public let checkButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .cultured
+        button.contentMode = .scaleAspectFill
+        return button
     }()
 
     private let textStack: UIStackView = {
@@ -78,12 +80,13 @@ class ActivityCell: UICollectionViewCell {
         imageContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         imageContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
 
-        self.addSubview(checkContainer)
-        checkContainer.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        checkContainer.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        checkContainer.translatesAutoresizingMaskIntoConstraints = false
-        checkContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        checkContainer.trailingAnchor.constraint( equalTo: self.trailingAnchor, constant: -16).isActive = true
+        self.addSubview(checkButton)
+        checkButton.addTarget(self, action: #selector(toggleCheckAction), for: .touchUpInside)
+        checkButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        checkButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        checkButton.translatesAutoresizingMaskIntoConstraints = false
+        checkButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        checkButton.trailingAnchor.constraint( equalTo: self.trailingAnchor, constant: -16).isActive = true
 
         self.addSubview(textStack)
         textStack.addArrangedSubview(plantLabel)
@@ -92,9 +95,42 @@ class ActivityCell: UICollectionViewCell {
         textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         textStack.leadingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: 8).isActive = true
     }
+
+    @objc private func toggleCheckAction() {
+        toggleCheck()
+    }
+
+    public func toggleCheck() {
+        if self.checkButton.image(for: .normal) == nil {
+            self.checkButton.setImage(UIImage(named: "check_icon"), for: .normal)
+        } else {
+            self.checkButton.setImage(nil, for: .normal)
+        }
+    }
 }
 
 extension ActivityCell {
-    private func configure() {
+    public func configure(data: ReminderData) {
+        guard let plant = DataManager.shared.getPlant(identifier: data.plantId) else {
+            return
+        }
+
+        switch data.overdue {
+        case 0:
+            self.backgroundColor = .illuminatingEmerald
+            self.descriptionLabel.text = DataManager.shared.getMessage(identifier: 0)
+        case 1:
+            self.backgroundColor = .atomicTagerine
+            self.descriptionLabel.text = DataManager.shared.getMessage(identifier: 1)
+        case 2:
+            self.backgroundColor = .maroonX11
+            self.descriptionLabel.text = DataManager.shared.getMessage(identifier: 2)
+        default:
+            self.backgroundColor = .maroonX11
+            self.descriptionLabel.text = DataManager.shared.getMessage(identifier: 3)
+        }
+
+        self.plantLabel.text = plant.name
+//        self.imageContainer.image
     }
 }
