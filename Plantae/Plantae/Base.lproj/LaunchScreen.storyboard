@@ -14,7 +14,20 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_launch" translatesAutoresizingMaskIntoConstraints="NO" id="O54-g0-bWs">
+                                <rect key="frame" x="27" y="268" width="360" height="360"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="Bid-ZJ-BpL"/>
+                                    <constraint firstAttribute="height" constant="360" id="I2C-Ho-jsi"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="O54-g0-bWs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="as3-IA-ttv"/>
+                            <constraint firstItem="O54-g0-bWs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cjH-pq-unx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -23,4 +36,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo_launch" width="360" height="360"/>
+    </resources>
 </document>
