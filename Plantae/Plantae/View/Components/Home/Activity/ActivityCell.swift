@@ -11,12 +11,15 @@ import UIKit
 class ActivityCell: UICollectionViewCell {
 
     public static let identifier: String = "activityCell"
+    private var reminder: ReminderData?
+    public weak var delegate: ActivityDelegate?
 
     private let imageContainer: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 85, height: 85))
         imageView.layer.cornerRadius = 42.5
         imageView.backgroundColor = .cultured50
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -106,14 +109,19 @@ class ActivityCell: UICollectionViewCell {
         } else {
             self.checkButton.setImage(nil, for: .normal)
         }
+        if let del = self.delegate, let unwrappedReminder = self.reminder {
+            del.updateCompletedActivity(identifier: unwrappedReminder.identifier)
+        } else {
+            fatalError("Please, setup the ActivityDelegate")
+        }
     }
 }
 
 extension ActivityCell {
     public func configure(data: ReminderData) {
-        guard let plant = DataManager.shared.getPlant(identifier: data.plantId) else {
-            return
-        }
+        self.reminder = data
+
+        guard let plant = DataManager.shared.getPlant(identifier: data.plantId) else { return }
 
         switch data.overdue {
         case 0:
@@ -131,6 +139,10 @@ extension ActivityCell {
         }
 
         self.plantLabel.text = plant.name
-//        self.imageContainer.image
+        if !plant.photoData.isEmpty, let stringData = Data(base64Encoded: plant.photoData) {
+                self.imageContainer.image = UIImage(data: stringData)
+        } else {
+            self.imageContainer.image = UIImage(named: "default_image")
+        }
     }
 }

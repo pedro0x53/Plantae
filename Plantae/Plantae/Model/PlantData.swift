@@ -18,22 +18,37 @@ struct PlantData: Codable {
     var name: String
     var commonName: String
     var speciesName: String
-    var photoURL: String
+    var photoData: String
     var creationDate: String
     var about: String
     var link: String
 
-    init(commomName: String, name: String = "", photoURL: String = "") {
+    init(commonName: String, name: String = "", photoData: String?) {
         self.identifier = UUID().uuidString
 
+        if commonName.isEmpty {
+            self.commonName = "Arcanum Plant"
+            self.speciesName = "Arcanum Plant"
+            self.about = ""
+            self.link = ""
+        } else {
+            self.commonName = commonName
+            self.speciesName = commonName
+            self.about = ""
+            self.link = ""
+        }
+
         if name.isEmpty {
-            self.name = commomName
+            self.name = "Arcanum"
         } else {
             self.name = name
         }
 
-        self.commonName = commomName
-        self.photoURL = photoURL
+        if let data = photoData {
+            self.photoData = data
+        } else {
+            self.photoData = ""
+        }
 
         let currentDate = Date()
         let formatter = DateFormatter()
@@ -42,15 +57,5 @@ struct PlantData: Codable {
         let today = formatter.string(from: currentDate)
 
         self.creationDate = today
-
-        if commomName.isEmpty {
-            self.speciesName = ""
-            self.about = ""
-            self.link = ""
-        } else {
-            self.speciesName = ""
-            self.about = ""
-            self.link = ""
-        }
     }
 }

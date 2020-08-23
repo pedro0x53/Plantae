@@ -29,6 +29,7 @@
 		FEC6803024E5628900C0C701 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6802F24E5628900C0C701 /* Config.swift */; };
 		FEC6803424E564AE00C0C701 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6803324E564AE00C0C701 /* Home.swift */; };
 		FEC6803624E5658600C0C701 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6803524E5658600C0C701 /* HomeViewController.swift */; };
+		FEFF4A9D24F29DED0006D9D0 /* ActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF4A9C24F29DED0006D9D0 /* ActivityDelegate.swift */; };
 		FEFF788B24E56FE4004504FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF788A24E56FE4004504FF /* Colors.swift */; };
 		FEFF789024E58821004504FF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF788F24E58821004504FF /* TabBarViewController.swift */; };
 		FEFF789424E5B99F004504FF /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF789324E5B99F004504FF /* ActivityCell.swift */; };
@@ -60,6 +61,7 @@
 		FEC6802F24E5628900C0C701 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FEC6803324E564AE00C0C701 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		FEC6803524E5658600C0C701 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FEFF4A9C24F29DED0006D9D0 /* ActivityDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDelegate.swift; sourceTree = "<group>"; };
 		FEFF788A24E56FE4004504FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FEFF788F24E58821004504FF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FEFF789324E5B99F004504FF /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA399F924F03BAF00AAB4A8 /* CreatePlantDelegate.swift */,
+				FEFF4A9C24F29DED0006D9D0 /* ActivityDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				FE36082324E8121900F5D2CA /* PlantsCollection.swift in Sources */,
 				FE36082124E8120100F5D2CA /* PlantCell.swift in Sources */,
 				FEA399D624ED4A3A00AAB4A8 /* TrefleData.swift in Sources */,
+				FEFF4A9D24F29DED0006D9D0 /* ActivityDelegate.swift in Sources */,
 				FEC6803024E5628900C0C701 /* Config.swift in Sources */,
 				FEA399D824ED4A5A00AAB4A8 /* TrefleAPI.swift in Sources */,
 				FEFF789424E5B99F004504FF /* ActivityCell.swift in Sources */,

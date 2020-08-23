@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CreatePlantDelegate {
-    func update()
+protocol CreatePlantDelegate: AnyObject {
+    func updatePlants()
     func somethingWentWrong()
 }

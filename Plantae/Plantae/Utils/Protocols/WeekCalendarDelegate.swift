@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol  WeekCalendarDelegate {
+protocol  WeekCalendarDelegate: AnyObject {
     func weekdaysActivities() -> [Int]
 }

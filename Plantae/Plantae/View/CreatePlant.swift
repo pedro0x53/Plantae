@@ -44,7 +44,7 @@ class CreatePlant: UIView {
 
     public let commonTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Commom Name"
+        textField.placeholder = "Common Species Name"
         textField.textColor = .richBlack
         textField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return textField

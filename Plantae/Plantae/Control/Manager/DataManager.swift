@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 public enum DataManagerErros: Error {
     case plantCreation
@@ -59,6 +60,16 @@ class DataManager {
     }
 
     public func deleteData() {
+
+        // Removing every reminder scheduled
+        let reminders = getAllReminders()
+        var remindersIDs: [String] = []
+        for reminder in reminders {
+            remindersIDs.append(reminder.identifier)
+        }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: remindersIDs)
+
+        // Deletting JSON files
         let plantsURL = self.getMainDirectory().appendingPathComponent("plants").appendingPathExtension("json")
         let remindersURL = self.getMainDirectory().appendingPathComponent("reminders").appendingPathExtension("json")
         do {
@@ -67,8 +78,11 @@ class DataManager {
         } catch {
             print("Unable to delete folder.")
         }
+
+        // Deletting User Default keys
         defaults.removeObject(forKey: "messages")
         defaults.removeObject(forKey: "completedActivities")
+
     }
 
     public func setupFiles() throws {
@@ -194,12 +208,16 @@ extension DataManager {
     }
 
     public func getTodaysReminders() -> [ReminderData] {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .full
         let allReminders = getAllReminders()
         let overduedReminders = getAllOverduedReminders()
         var todaysReminders: [ReminderData] = []
         todaysReminders.append(contentsOf: overduedReminders)
-        todaysReminders.append(contentsOf: allReminders.filter({ $0.weekday == calendar.component(.weekday,
-                                                                                                  from: Date()) }))
+        todaysReminders.append(contentsOf: allReminders.filter {
+            $0.overdue == 0 && formatter.date(from: $0.date) == Date()
+        })
         return todaysReminders
     }
 
@@ -214,6 +232,13 @@ extension DataManager {
     }
 
     public func createReminder(reminder: ReminderData) throws {
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .badge, .sound],
+            completionHandler: { _, error in
+                if let error = error {
+                    print("An erorr occurred while tying to create reminder: \(error)")
+                }
+        })
         var reminders = getAllReminders()
         reminders.append(reminder)
         try update(forFile: .reminders, object: reminders)
@@ -246,7 +271,7 @@ extension DataManager {
 
     public func updateCompleteActivities(reminderID: String) {
         if var completed = defaults.array(forKey: "completedActivities") as? [String] {
-            if let index = completed.firstIndex(of: reminderID) {
+            if let index = completed.firstIndex(of: reminderID), index >= 0 {
                 completed.remove(at: index)
             } else {
                 completed.append(reminderID)
@@ -255,23 +280,13 @@ extension DataManager {
         }
     }
 
-    public func printCompletedActivities() {
-        if let completed = defaults.array(forKey: "completedActivities") as? [String] {
-            for activity in completed {
-                print(activity)
-            }
-            print()
-        }
-    }
-
-    public func getAllWeekdaysReminders() -> [Int] {
-        var weekdays: [Int] = []
-        let reminders = getAllReminders()
-        for reminder in reminders {
-            weekdays.append(reminder.weekday)
-        }
-        return weekdays
-    }
+//    public func printCompletedActivities() {
+//        if let completed = defaults.array(forKey: "completedActivities") as? [String] {
+//            for activity in completed {
+//                print("Completed:", activity)
+//            }
+//        }
+//    }
 }
 
 extension DataManager {
@@ -281,5 +296,52 @@ extension DataManager {
             message = messages[identifier]
         }
         return message
+    }
+}
+
+extension DataManager {
+    public func generateDate() -> String {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .full
+
+        let today = Date()
+        let weekday = DateComponents(weekday: calendar.component(.weekday, from: today))
+        guard let next = calendar.nextDate(after: today, matching: weekday, matchingPolicy: .nextTime) else {
+            fatalError("Unable to generate Date")
+        }
+        guard let reminderDate = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: next) else {
+            fatalError("Unable to generate Date")
+        }
+
+        let strFromDate = formatter.string(from: reminderDate)
+        return strFromDate
+    }
+
+    private func scheduleReminder(reminder: ReminderData) {
+        if let plant = self.getPlant(identifier: reminder.plantId) {
+            let message = getMessage(identifier: reminder.overdue)
+            let content = UNMutableNotificationContent()
+            content.title = "It's time to water!"
+            content.body = "\(plant.name) says: \(message)"
+            content.sound = .default
+
+            let formatter = DateFormatter()
+            formatter.dateStyle = .full
+            formatter.timeStyle = .full
+            guard let date = formatter.date(from: reminder.date) else {
+                fatalError("Unable to cast schedule reminder date.")
+            }
+            let trigger = UNCalendarNotificationTrigger(dateMatching:
+                calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date), repeats: false)
+
+            let request = UNNotificationRequest(identifier: reminder.identifier, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                if error != nil {
+                    print("Unable to schedule reminder.")
+                }
+            })
+        }
     }
 }

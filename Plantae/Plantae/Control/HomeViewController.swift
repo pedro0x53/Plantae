@@ -39,7 +39,6 @@ class HomeViewController: UIViewController {
         self.tabBarController?.navigationItem.title = "Activities"
         navigationController?.navigationBar.prefersLargeTitles = true
         self.tabBarController?.navigationItem.rightBarButtonItem = nil
-        DataManager.shared.printCompletedActivities()
     }
 }
 
@@ -59,11 +58,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             fatalError("Unable to cast cell ActivityCell to UICollectionCell")
         }
         cell.configure(data: reminders[indexPath.row])
-
+        cell.delegate = self
         return cell
     }
+}
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DataManager.shared.updateCompleteActivities(reminderID: reminders[indexPath.row].identifier)
+extension HomeViewController: ActivityDelegate {
+    func updateCompletedActivity(identifier: String) {
+        DataManager.shared.updateCompleteActivities(reminderID: identifier)
     }
 }

@@ -69,7 +69,7 @@ extension MyPlantsViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 extension MyPlantsViewController: CreatePlantDelegate {
-    func update() {
+    func updatePlants() {
         self.plants = DataManager.shared.getAllPlants()
         myPlants.plantsCollection.reloadData()
     }

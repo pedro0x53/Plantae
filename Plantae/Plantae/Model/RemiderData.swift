@@ -24,13 +24,13 @@ struct ReminderData: Codable {
     var plantId: String
     var status: Int
     var overdue: Int
-    var weekday: Int
+    var date: String
 
-    init(plantId: String, weekday: Int) {
+    init(plantId: String, date: String) {
         self.identifier = UUID().uuidString
         self.plantId = plantId
         self.status = 1
         self.overdue = 0
-        self.weekday = weekday
+        self.date = date
     }
 }

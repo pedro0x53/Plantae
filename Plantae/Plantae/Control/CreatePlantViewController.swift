@@ -11,7 +11,7 @@ import UIKit
 class CreatePlantViewController: UIViewController {
 
     private let createPlant = CreatePlant()
-    public var delegate: CreatePlantDelegate?
+    public weak var delegate: CreatePlantDelegate?
 
     override func loadView() {
         super.loadView()
@@ -43,29 +43,29 @@ class CreatePlantViewController: UIViewController {
     }
 
     @objc private func done() {
-        guard let unwappedDelegate = self.delegate else {
+        guard let name = createPlant.nameTextField.text else { return }
+        guard let commonName = createPlant.commonTextField.text else { return }
+        guard let image = createPlant.photoView.image else { return }
+
+        if name.isEmpty || commonName.isEmpty {
+            self.dismiss(animated: true, completion: nil)
             return
         }
 
+        guard let unwappedDelegate = self.delegate else { return }
         do {
-            guard let name = createPlant.nameTextField.text else {
-                return
-            }
-
-            if name.isEmpty {
-                self.dismiss(animated: true, completion: nil)
-                return
-            }
-
-            let plant = PlantData(commomName: name)
+            let plant = PlantData(commonName: commonName, name: name, photoData: image.pngData()?.base64EncodedString())
             try DataManager.shared.createPlant(plant: plant)
-            let reminder = ReminderData(plantId: plant.identifier, weekday: 6)
+
+            let date = DataManager.shared.generateDate()
+            let reminder = ReminderData(plantId: plant.identifier, date: date)
             try DataManager.shared.createReminder(reminder: reminder)
         } catch {
             unwappedDelegate.somethingWentWrong()
         }
+
         self.dismiss(animated: true, completion: {
-            unwappedDelegate.update()
+            unwappedDelegate.updatePlants()
         })
     }
 
@@ -78,14 +78,31 @@ class CreatePlantViewController: UIViewController {
     @objc private func displayActionSheet() {
         let optionalMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let takePhoto = UIAlertAction(title: "Take Photo", style: .default, handler: nil)
-        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default, handler: nil)
+//        let takePhoto = UIAlertAction(title: "Take Photo", style: .default, handler: nil)
+        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default, handler: importPicture)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        optionalMenu.addAction(takePhoto)
+//        optionalMenu.addAction(takePhoto)
         optionalMenu.addAction(choosePhoto)
         optionalMenu.addAction(cancel)
 
         self.present(optionalMenu, animated: true, completion: nil)
+    }
+}
+
+extension CreatePlantViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        self.createPlant.photoView.image = image
+        dismiss(animated: true, completion: nil)
+    }
+
+    func importPicture(alert: UIAlertAction) {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
 }

@@ -35,15 +35,15 @@ class PlantCell: UICollectionViewCell {
 
     private let plantNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Plant Name"
+        label.text = "Name"
         label.textColor = .richBlack
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
 
-    private let scientificNameLabel: UILabel = {
+    private let commonNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Scientific Name"
+        label.text = "Common Name"
         label.textColor = .richBlack
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return label
@@ -66,27 +66,34 @@ class PlantCell: UICollectionViewCell {
         self.layer.shadowOpacity = 0.15
         self.layer.shadowRadius = 4
 
-        self.addSubview(textStack)
-        textStack.translatesAutoresizingMaskIntoConstraints = false
-        textStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        textStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        textStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8).isActive = true
-
-        textStack.addArrangedSubview(plantNameLabel)
-        textStack.addArrangedSubview(scientificNameLabel)
-
         self.addSubview(photo)
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        photo.bottomAnchor.constraint(equalTo: textStack.topAnchor, constant: -8).isActive = true
         photo.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         photo.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        photo.heightAnchor.constraint(equalToConstant: 145).isActive = true
+
+        self.addSubview(plantNameLabel)
+        plantNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        plantNameLabel.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 8).isActive = true
+        plantNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+
+        self.addSubview(commonNameLabel)
+        commonNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        commonNameLabel.topAnchor.constraint(equalTo: plantNameLabel.bottomAnchor).isActive = true
+        commonNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
     }
 }
 
 extension PlantCell {
     public func configure(data: PlantData) {
         self.plantNameLabel.text = data.name
-        self.scientificNameLabel.text = data.commonName
+        self.commonNameLabel.text = data.commonName
+
+        if !data.photoData.isEmpty, let stringData = Data(base64Encoded: data.photoData) {
+                self.photo.image = UIImage(data: stringData)
+        } else {
+            self.photo.image = UIImage(named: "default_image")
+        }
     }
 }
