@@ -17,32 +17,17 @@ struct PlantData: Codable {
     var identifier: String
     var name: String
     var commonName: String
-    var speciesName: String
     var photoData: String
     var creationDate: String
-    var about: String
-    var link: String
+    var speciesName: String = ""
+    var about: String = ""
+    var link: String = ""
 
-    init(commonName: String, name: String = "", photoData: String?) {
-        self.identifier = UUID().uuidString
-
-        if commonName.isEmpty {
-            self.commonName = "Arcanum Plant"
-            self.speciesName = "Arcanum Plant"
-            self.about = ""
-            self.link = ""
-        } else {
-            self.commonName = commonName
-            self.speciesName = commonName
-            self.about = ""
-            self.link = ""
-        }
-
-        if name.isEmpty {
-            self.name = "Arcanum"
-        } else {
-            self.name = name
-        }
+    init(commonName: String, name: String, photoData: String?) {
+        let uuid = UUID().uuidString
+        self.identifier = uuid
+        self.commonName = commonName
+        self.name = name
 
         if let data = photoData {
             self.photoData = data
@@ -52,10 +37,16 @@ struct PlantData: Codable {
 
         let currentDate = Date()
         let formatter = DateFormatter()
-        formatter.timeStyle = .none
-        formatter.dateStyle = .short
+        formatter.timeStyle = .full
+        formatter.dateStyle = .full
         let today = formatter.string(from: currentDate)
 
         self.creationDate = today
+        PlantData.serchForPlantInfo(plantID: uuid, commonName: commonName)
+    }
+
+    private static func serchForPlantInfo(plantID: String, commonName: String) {
+        let caller = TrefleAPI()
+        caller.updatePlantInfo(identifier: plantID, query: commonName)
     }
 }

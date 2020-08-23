@@ -10,11 +10,11 @@ import Foundation
 
 // MARK: - Trefle Response
 struct TrefleResponse: Codable {
-    let data: [PlantAPIData]
+    let data: [TrefleData]
 }
 
 // MARK: - Plant API DAta
-struct PlantAPIData: Codable {
+struct TrefleData: Codable {
     let identifier: Int
     let commonName, slug, scientificName: String
     let year: Int

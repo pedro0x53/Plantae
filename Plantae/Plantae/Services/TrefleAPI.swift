@@ -12,7 +12,7 @@ class TrefleAPI {
 
     private let APIKey = "8bnHu9xQE-4MTA6HKAdS5BdI9F_nFlKYrFa9YPD-kWk"
 
-    public func search(for query: String) {
+    private func search(for query: String, completion: @escaping (_ response: [TrefleData]) -> Void) {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "trefle.io"
@@ -24,27 +24,46 @@ class TrefleAPI {
         ]
 
         guard let url = components.url else {
-            fatalError("Failed to create request")
+            completion([])
+            return
         }
 
         let task = URLSession.shared.dataTask(
             with: url,
-            completionHandler: { data, response, error in
-                if let err = error {
-                    fatalError("Search Error: \(err)")
-                } else {
-                    if let res = response {
-                        print(res)
-                    }
-                    if let body = data {
-                        print(body)
+            completionHandler: { data, _, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion([])
+                }
+                if let data = data {
+                    if let trefleResponse = try? JSONDecoder().decode(TrefleResponse.self, from: data) {
+                        print("Trefle response", trefleResponse)
+                        completion(trefleResponse.data)
+                    } else {
+                        print("Trefle response data decoding error")
+                        completion([])
                     }
                 }
             }
         )
         task.resume()
     }
-//    public func getPlantInfo(query: String) -> PlantAPIData {
-//
-//    }
+
+    public func updatePlantInfo(identifier: String, query: String) {
+        search(for: query, completion: { data in
+            let plantData = data[0]
+            if var plant = DataManager.shared.getPlant(identifier: identifier) {
+                plant.link = plantData.links.linksSelf
+                plant.about = plantData.bibliography
+                plant.speciesName = plantData.scientificName
+                plant.commonName = plantData.commonName
+                do {
+                    try DataManager.shared.updatePlant(plant: plant)
+                    print("updated")
+                } catch {
+                    print("Unable to update plant info")
+                }
+            }
+        })
+    }
 }

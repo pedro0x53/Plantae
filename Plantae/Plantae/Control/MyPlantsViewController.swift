@@ -72,6 +72,10 @@ extension MyPlantsViewController: CreatePlantDelegate {
     func updatePlants() {
         self.plants = DataManager.shared.getAllPlants()
         myPlants.plantsCollection.reloadData()
+
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
+            self.updatePlants()
+        }
     }
 
     func somethingWentWrong() {
