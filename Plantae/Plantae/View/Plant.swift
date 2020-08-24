@@ -16,10 +16,11 @@ class Plant: UIView {
         return view
     }()
 
-    private let photo: UIImageView = {
+    public let photo: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .clear
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
@@ -32,19 +33,19 @@ class Plant: UIView {
         return stack
     }()
 
-    private let name: UILabel = {
+    public let name: UILabel = {
         let label = UILabel()
         label.text = "Plant Name"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 34, weight: .regular)
+        label.textColor = .richBlack
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         return label
     }()
 
-    private let sName: UILabel = {
+    public let sName: UILabel = {
         let label = UILabel()
         label.text = "Scientific Name"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
+        label.textColor = .richBlack
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         return label
     }()
 
@@ -52,7 +53,7 @@ class Plant: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
-        stack.distribution = .equalSpacing
+        stack.distribution = .equalCentering
         stack.spacing = 40
         return stack
     }()
@@ -64,7 +65,7 @@ class Plant: UIView {
         return label
     }()
 
-    private let about: UILabel = {
+    public let about: UILabel = {
         let label = UILabel()
         label.text = """
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -89,60 +90,49 @@ class Plant: UIView {
     private func setupLayout() {
         self.backgroundColor = .white
 
-        self.addSubview(photoContainer)
-        photoContainer.translatesAutoresizingMaskIntoConstraints = false
-        photoContainer.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        photoContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        photoContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        photoContainer.heightAnchor.constraint(equalToConstant: 250).isActive = true
-
-        photoContainer.addSubview(photo)
+        self.addSubview(photo)
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.topAnchor.constraint(equalTo: photoContainer.topAnchor).isActive = true
-        photo.leadingAnchor.constraint(equalTo: photoContainer.leadingAnchor).isActive = true
-        photo.trailingAnchor.constraint(equalTo: photoContainer.trailingAnchor).isActive = true
-        photo.bottomAnchor.constraint(equalTo: photoContainer.bottomAnchor).isActive = true
-
-        photoContainer.addSubview(textStack)
-        textStack.translatesAutoresizingMaskIntoConstraints = false
-        textStack.bottomAnchor.constraint(equalTo: photoContainer.bottomAnchor, constant: -16).isActive = true
-        textStack.leadingAnchor.constraint(equalTo: photoContainer.leadingAnchor, constant: 16).isActive = true
-        textStack.trailingAnchor.constraint(equalTo: photoContainer.trailingAnchor, constant: -16).isActive = true
-
-        textStack.addArrangedSubview(name)
-        textStack.addArrangedSubview(sName)
+        photo.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        photo.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        photo.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        photo.heightAnchor.constraint(equalToConstant: 250).isActive = true
 
         self.addSubview(infoStack)
         infoStack.translatesAutoresizingMaskIntoConstraints = false
-        infoStack.topAnchor.constraint(equalTo: photoContainer.bottomAnchor, constant: 30).isActive = true
+        infoStack.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 16).isActive = true
         infoStack.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-
-        for _ in 0...2 {
-            infoStack.addArrangedSubview(generateInfoItem())
-        }
+        infoStack.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
         self.addSubview(aboutLabel)
         aboutLabel.translatesAutoresizingMaskIntoConstraints = false
         aboutLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        aboutLabel.topAnchor.constraint(equalTo: infoStack.bottomAnchor, constant: 50).isActive = true
+        aboutLabel.topAnchor.constraint(equalTo: infoStack.bottomAnchor, constant: 16).isActive = true
+
+        self.addSubview(textStack)
+        textStack.translatesAutoresizingMaskIntoConstraints = false
+        textStack.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 16).isActive = true
+        textStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+        textStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+
+        textStack.addArrangedSubview(name)
+        textStack.addArrangedSubview(sName)
 
         self.addSubview(about)
         about.translatesAutoresizingMaskIntoConstraints = false
-        about.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 8).isActive = true
+        about.topAnchor.constraint(equalTo: textStack.bottomAnchor, constant: 8).isActive = true
         about.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         about.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
     }
 
-    private func generateInfoItem() -> UIView {
+    public func generateInfoItem(icon: String, title: String, caption: String) {
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 75, height: 100))
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        container.widthAnchor.constraint(equalToConstant: 100).isActive = true
         container.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
         let photo = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        photo.backgroundColor = .cultured
-        photo.layer.cornerRadius = 25
         photo.clipsToBounds = true
+        photo.image = UIImage(named: icon)
         container.addSubview(photo)
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
@@ -150,22 +140,24 @@ class Plant: UIView {
         photo.widthAnchor.constraint(equalToConstant: 50).isActive = true
         photo.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
-        let title = UILabel()
-        title.text = "Title"
-        title.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        container.addSubview(title)
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.centerXAnchor.constraint(equalTo: photo.centerXAnchor).isActive = true
-        title.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 8).isActive = true
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.textColor = .richBlack
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        container.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 4).isActive = true
 
-        let caption = UILabel()
-        caption.text = "Caption"
-        caption.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        container.addSubview(caption)
-        caption.translatesAutoresizingMaskIntoConstraints = false
-        caption.centerXAnchor.constraint(equalTo: title.centerXAnchor).isActive = true
-        caption.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 4).isActive = true
+        let captionLabel = UILabel()
+        captionLabel.text = caption
+        captionLabel.textColor = .richBlack
+        captionLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        container.addSubview(captionLabel)
+        captionLabel.translatesAutoresizingMaskIntoConstraints = false
+        captionLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        captionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
 
-        return container
+        self.infoStack.addArrangedSubview(container)
     }
 }

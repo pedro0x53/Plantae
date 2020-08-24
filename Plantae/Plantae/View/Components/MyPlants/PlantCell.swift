@@ -19,6 +19,7 @@ class PlantCell: UICollectionViewCell {
         let imageview = UIImageView()
         imageview.backgroundColor = .cultured
         imageview.clipsToBounds = true
+        imageview.contentMode = .scaleAspectFill
         imageview.layer.cornerRadius = 10
         imageview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return imageview

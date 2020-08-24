@@ -101,11 +101,11 @@ class CreatePlant: UIView {
         commonTextField.leadingAnchor.constraint(equalTo: commonLabel.trailingAnchor, constant: 16).isActive = true
         commonTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
 
-        self.addSubview(wateringLabel)
-        wateringLabel.translatesAutoresizingMaskIntoConstraints = false
-        wateringLabel.topAnchor.constraint(equalTo: commonLabel.bottomAnchor, constant: 16).isActive = true
-        wateringLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-        wateringLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+//        self.addSubview(wateringLabel)
+//        wateringLabel.translatesAutoresizingMaskIntoConstraints = false
+//        wateringLabel.topAnchor.constraint(equalTo: commonLabel.bottomAnchor, constant: 16).isActive = true
+//        wateringLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
+//        wateringLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
     }
 
     private func generateSetupItem() -> UIStackView {

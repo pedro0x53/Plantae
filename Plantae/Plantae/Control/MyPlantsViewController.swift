@@ -66,15 +66,20 @@ extension MyPlantsViewController: UICollectionViewDelegate, UICollectionViewData
         cell.configure(data: plants[indexPath.row])
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = PlantViewController()
+        controller.plantID = plants[indexPath.row].identifier
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension MyPlantsViewController: CreatePlantDelegate {
     func updatePlants() {
         self.plants = DataManager.shared.getAllPlants()
-        myPlants.plantsCollection.reloadData()
-
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
             self.updatePlants()
+            self.myPlants.plantsCollection.reloadData()
         }
     }
 

@@ -37,7 +37,6 @@ class TrefleAPI {
                 }
                 if let data = data {
                     if let trefleResponse = try? JSONDecoder().decode(TrefleResponse.self, from: data) {
-                        print("Trefle response", trefleResponse)
                         completion(trefleResponse.data)
                     } else {
                         print("Trefle response data decoding error")
@@ -51,17 +50,18 @@ class TrefleAPI {
 
     public func updatePlantInfo(identifier: String, query: String) {
         search(for: query, completion: { data in
-            let plantData = data[0]
-            if var plant = DataManager.shared.getPlant(identifier: identifier) {
-                plant.link = plantData.links.linksSelf
-                plant.about = plantData.bibliography
-                plant.speciesName = plantData.scientificName
-                plant.commonName = plantData.commonName
-                do {
-                    try DataManager.shared.updatePlant(plant: plant)
-                    print("updated")
-                } catch {
-                    print("Unable to update plant info")
+            if data.count > 0 {
+                let plantData = data[0]
+                if var plant = DataManager.shared.getPlant(identifier: identifier) {
+                    plant.link = plantData.links.linksSelf
+                    plant.about = plantData.bibliography
+                    plant.speciesName = plantData.scientificName
+                    plant.commonName = plantData.commonName
+                    do {
+                        try DataManager.shared.updatePlant(plant: plant)
+                    } catch {
+                        print("Unable to update plant info")
+                    }
                 }
             }
         })

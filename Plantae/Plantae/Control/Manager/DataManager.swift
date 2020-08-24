@@ -319,6 +319,10 @@ extension DataManager {
         return strFromDate
     }
 
+    public func daysBetween(start: Date, end: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: start, to: end).day!
+    }
+
     private func scheduleReminder(reminder: ReminderData) {
         if let plant = self.getPlant(identifier: reminder.plantId) {
             let message = getMessage(identifier: reminder.overdue)
